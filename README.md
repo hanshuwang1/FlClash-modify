@@ -4,6 +4,26 @@
 
 </div>
 
+## What changed
+modify taskbar icon display logic
+
+lib\common\tray.dart  
+test\common\tray_test.dart  
+
+```mermaid
+graph TD
+    A[isStarted] -->|OFF| B[status_1.ico]
+    A -->|ON| C[Proxy]
+    C -->|OFF| D[status_2.ico]
+    C -->|ON| E[Tun]
+    E -->|OFF| F[system_proxy_on.ico]
+    E -->|ON| G[statu3_3.ico]
+```
+SystemProxy: On
+![Proxy_on](./snapshots/isStarted_on_Proxy_on.png)
+SystemProxy: Off
+![Proxy_off](./snapshots/isStarted_on_Proxy_off.png)
+
 ## FlClash
 
 [![Downloads](https://img.shields.io/github/downloads/chen08209/FlClash/total?style=flat-square&logo=github)](https://github.com/chen08209/FlClash/releases/)[![Last Version](https://img.shields.io/github/release/chen08209/FlClash/all.svg?style=flat-square)](https://github.com/chen08209/FlClash/releases/)[![License](https://img.shields.io/github/license/chen08209/FlClash?style=flat-square)](LICENSE)
@@ -121,16 +141,3 @@ Support the following actions
            dart setup.dart macos
            ```
 
-## What changed
-lib\common\tray.dart  
-test\common\tray_test.dart  
-modify taskbar icon display logic
-```mermaid
-graph TD
-    A[isStarted] -->|OFF| B[status_1.ico]
-    A -->|ON| C[Proxy]
-    C -->|OFF| D[status_2.ico]
-    C -->|ON| E[Tun]
-    E -->|OFF| F[system_proxy_on.ico]
-    E -->|ON| G[statu3_3.ico]
-```
