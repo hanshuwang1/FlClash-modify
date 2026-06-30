@@ -197,10 +197,10 @@ Future<int> _package(
   );
 
   process.stdout.listen((data) {
-    stdout.write(utf8.decode(data));
+    stdout.add(data);
   });
   process.stderr.listen((data) {
-    stderr.write(utf8.decode(data));
+    stderr.add(data);
   });
   final exitCode = await process.exitCode;
   return exitCode;

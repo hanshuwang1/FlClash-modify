@@ -121,12 +121,16 @@ Support the following actions
            dart setup.dart macos
            ```
 
-## Star
-
-The easiest way to support developers is to click on the star (⭐) at the top of the page.
-
-<p style="text-align: center;">
-    <a href="https://api.star-history.com/svg?repos=chen08209/FlClash&Date">
-        <img alt="start" width=50% src="https://api.star-history.com/svg?repos=chen08209/FlClash&Date"/>
-    </a>
-</p>
+## What changed
+lib\common\tray.dart  
+test\common\tray_test.dart  
+modify taskbar icon display logic
+```mermaid
+graph TD
+    A[isStarted] -->|OFF| B[status_1.ico]
+    A -->|ON| C[Proxy]
+    C -->|OFF| D[status_2.ico]
+    C -->|ON| E[Tun]
+    E -->|OFF| F[system_proxy_on.ico]
+    E -->|ON| G[statu3_3.ico]
+```

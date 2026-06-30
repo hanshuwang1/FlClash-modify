@@ -31,25 +31,36 @@ class Tray {
     await trayManager.destroy();
   }
 
-  String getTryIcon({required bool isStart, required bool tunEnable}) {
+  String getTryIcon({
+    required bool isStart,
+    required bool tunEnable,
+    required bool systemProxy,
+  }) {
     if (system.isMacOS || !isStart) {
       return 'assets/images/icon/status_1.$trayIconSuffix';
     }
-    if (!tunEnable) {
+    if (!systemProxy) {
       return 'assets/images/icon/status_2.$trayIconSuffix';
     }
-    return 'assets/images/icon/status_3.$trayIconSuffix';
+    return tunEnable
+        ? 'assets/images/icon/status_3.$trayIconSuffix'
+        : 'assets/images/icon/system_proxy_on.$trayIconSuffix';
   }
 
   Future _updateSystemTray({
     required bool isStart,
     required bool tunEnable,
+    required bool systemProxy,
   }) async {
     if (Platform.isLinux) {
       await trayManager.destroy();
     }
     await trayManager.setIcon(
-      getTryIcon(isStart: isStart, tunEnable: tunEnable),
+      getTryIcon(
+        isStart: isStart,
+        tunEnable: tunEnable,
+        systemProxy: systemProxy,
+      ),
       isTemplate: system.isMacOS,
     );
     if (!Platform.isLinux) {
@@ -68,6 +79,7 @@ class Tray {
       await _updateSystemTray(
         isStart: trayState.isStart,
         tunEnable: trayState.tunEnable,
+        systemProxy: trayState.systemProxy,
       );
     }
     final List<MenuItem> menuItems = [];
@@ -195,6 +207,7 @@ class Tray {
       await _updateSystemTray(
         isStart: trayState.isStart,
         tunEnable: trayState.tunEnable,
+        systemProxy: trayState.systemProxy,
       );
     }
     updateTrayTitle(showTrayTitle: trayState.showTrayTitle, traffic: traffic);
